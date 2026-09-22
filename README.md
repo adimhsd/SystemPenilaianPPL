@@ -45,6 +45,7 @@ Aplikasi web modern berbasis **Laravel 11** dan **FilamentPHP v3/v5** yang diban
 ### 4. Ekspor & Impor Microsoft Excel Asli (`.xlsx`)
 - Menggunakan pustaka resmi `phpoffice/phpspreadsheet`.
 - **Export Rekap Nilai (.xlsx):** Berkas Excel lengkap dengan kop resmi fakultas, nomor NIM berformat teks (angka nol depan tidak hilang), desimal dua digit, dan auto-sizing kolom.
+- **Export Akun DPL (.xlsx):** Berkas Excel berisi kredensial username, email, kelompok bimbingan, password default, dan URL login untuk dibagikan kepada masing-masing DPL.
 - **Import Mahasiswa (.xlsx):** Mendukung unggah berkas Excel massal dengan deteksi kolom otomatis (*NIM, Nama, Prodi, Kelompok, Mitra, DPL, Tahun Akademik*) dan penanganan duplikasi cerdas (*upsert*).
 - **Download Template (.xlsx):** Template baku siap pakai dengan contoh baris data riil.
 

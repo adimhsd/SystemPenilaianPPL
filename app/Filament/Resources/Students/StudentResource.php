@@ -47,7 +47,7 @@ class StudentResource extends Resource
 
     public static function canCreate(): bool
     {
-        return auth()->user()?->isAdmin() ?? false;
+        return auth()->check();
     }
 
     public static function form(Schema $schema): Schema

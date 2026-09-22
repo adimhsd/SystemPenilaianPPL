@@ -3,10 +3,10 @@
 namespace App\Filament\Resources\Students\Schemas;
 
 use App\Models\Student;
-use Filament\Forms\Components\Fieldset;
-use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Schemas\Components\Fieldset;
+use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Schema;
 
 class StudentForm
@@ -19,18 +19,23 @@ class StudentForm
                     TextInput::make('nim')
                         ->label('NIM Mahasiswa')
                         ->required()
-                        ->disabled(fn () => ! (auth()->user()?->isAdmin() ?? false)),
+                        ->unique(ignoreRecord: true)
+                        ->disabled(fn (string $operation) => $operation !== 'create' && ! (auth()->user()?->isAdmin() ?? false)),
                     TextInput::make('name')
                         ->label('Nama Lengkap')
                         ->required()
-                        ->disabled(fn () => ! (auth()->user()?->isAdmin() ?? false)),
+                        ->disabled(fn (string $operation) => $operation !== 'create' && ! (auth()->user()?->isAdmin() ?? false)),
                     Select::make('group_id')
                         ->label('Kelompok PPL')
-                        ->relationship('group', 'group_name')
+                        ->relationship('group', 'group_name', function ($query) {
+                            if (auth()->user()?->isDpl()) {
+                                $query->where('dpl_id', auth()->id());
+                            }
+                        })
                         ->searchable()
                         ->preload()
                         ->required()
-                        ->disabled(fn () => ! (auth()->user()?->isAdmin() ?? false)),
+                        ->disabled(fn (string $operation) => $operation !== 'create' && ! (auth()->user()?->isAdmin() ?? false)),
                     Select::make('prodi')
                         ->label('Program Studi')
                         ->options([
@@ -38,17 +43,17 @@ class StudentForm
                             'Akuntansi' => 'S1 Akuntansi',
                             'Bisnis Digital' => 'S1 Bisnis Digital',
                         ])
-                        ->disabled(fn () => ! (auth()->user()?->isAdmin() ?? false)),
+                        ->disabled(fn (string $operation) => $operation !== 'create' && ! (auth()->user()?->isAdmin() ?? false)),
                     Select::make('jenis_kelamin')
                         ->label('Jenis Kelamin')
                         ->options([
                             'Laki-laki' => 'Laki-laki',
                             'Perempuan' => 'Perempuan',
                         ])
-                        ->disabled(fn () => ! (auth()->user()?->isAdmin() ?? false)),
+                        ->disabled(fn (string $operation) => $operation !== 'create' && ! (auth()->user()?->isAdmin() ?? false)),
                     TextInput::make('konsentrasi')
                         ->label('Konsentrasi')
-                        ->disabled(fn () => ! (auth()->user()?->isAdmin() ?? false)),
+                        ->disabled(fn (string $operation) => $operation !== 'create' && ! (auth()->user()?->isAdmin() ?? false)),
                 ]),
 
                 Fieldset::make('Penilaian PPL (Bobot 60:40)')

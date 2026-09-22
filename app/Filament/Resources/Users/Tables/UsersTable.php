@@ -86,6 +86,12 @@ class UsersTable
                 DeleteAction::make(),
             ])
             ->toolbarActions([
+                Action::make('export_users')
+                    ->label('Export Akun DPL (.xlsx)')
+                    ->icon('heroicon-o-arrow-down-tray')
+                    ->color('success')
+                    ->url(route('users.export'))
+                    ->openUrlInNewTab(),
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
                 ]),

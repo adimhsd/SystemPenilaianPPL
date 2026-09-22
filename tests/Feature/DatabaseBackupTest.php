@@ -22,7 +22,7 @@ class DatabaseBackupTest extends TestCase
     {
         $admin = User::where('role', 'admin')->first();
 
-        $response = $this->actingAs($admin)->get('/admin/backup-database');
+        $response = $this->actingAs($admin)->get('/backup-database');
         $response->assertStatus(200);
     }
 
@@ -30,7 +30,7 @@ class DatabaseBackupTest extends TestCase
     {
         $dpl = User::where('role', 'dpl')->first();
 
-        $response = $this->actingAs($dpl)->get('/admin/backup-database');
+        $response = $this->actingAs($dpl)->get('/backup-database');
         $response->assertStatus(403);
     }
 
@@ -64,11 +64,11 @@ class DatabaseBackupTest extends TestCase
         $filename = $result['filename'];
 
         // Admin download test
-        $response = $this->actingAs($admin)->get("/admin/backup-download/{$filename}");
+        $response = $this->actingAs($admin)->get("/backup-download/{$filename}");
         $response->assertStatus(200);
 
         // DPL download test (Forbidden)
-        $response = $this->actingAs($dpl)->get("/admin/backup-download/{$filename}");
+        $response = $this->actingAs($dpl)->get("/backup-download/{$filename}");
         $response->assertStatus(403);
 
         // Clean up

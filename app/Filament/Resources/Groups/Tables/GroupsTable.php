@@ -96,7 +96,7 @@ class GroupsTable
                     ->label('Kelola Nilai')
                     ->icon('heroicon-o-pencil-square')
                     ->color('primary')
-                    ->url(fn (Group $record): string => url("/admin/students?tableFilters[group_id][value]={$record->id}")),
+                    ->url(fn (Group $record): string => \App\Filament\Resources\Students\StudentResource::getUrl('index', ['tableFilters' => ['group_id' => ['value' => $record->id]]])),
                 EditAction::make()
                     ->visible(fn () => auth()->user()?->isAdmin() ?? false),
                 DeleteAction::make()

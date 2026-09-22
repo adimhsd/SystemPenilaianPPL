@@ -18,7 +18,7 @@ class AuthAndAccessTest extends TestCase
 
     public function test_login_page_is_accessible(): void
     {
-        $response = $this->get('/admin/login');
+        $response = $this->get('/login');
         $response->assertStatus(200);
         $response->assertSee('FEB UNIKU - Rekap Nilai PPL');
     }
@@ -28,23 +28,23 @@ class AuthAndAccessTest extends TestCase
         $admin = User::where('role', 'admin')->first();
 
         // Akses Dashboard
-        $response = $this->actingAs($admin)->get('/admin');
+        $response = $this->actingAs($admin)->get('/');
         $response->assertStatus(200);
 
         // Akses Manajemen Pengguna
-        $response = $this->actingAs($admin)->get('/admin/users');
+        $response = $this->actingAs($admin)->get('/users');
         $response->assertStatus(200);
 
         // Akses Kelompok PPL
-        $response = $this->actingAs($admin)->get('/admin/groups');
+        $response = $this->actingAs($admin)->get('/groups');
         $response->assertStatus(200);
 
         // Akses Mitra
-        $response = $this->actingAs($admin)->get('/admin/mitras');
+        $response = $this->actingAs($admin)->get('/mitras');
         $response->assertStatus(200);
 
         // Akses Input Nilai
-        $response = $this->actingAs($admin)->get('/admin/students');
+        $response = $this->actingAs($admin)->get('/students');
         $response->assertStatus(200);
     }
 
@@ -53,22 +53,22 @@ class AuthAndAccessTest extends TestCase
         $dpl = User::where('role', 'dpl')->first();
 
         // DPL mengakses Dashboard
-        $response = $this->actingAs($dpl)->get('/admin');
+        $response = $this->actingAs($dpl)->get('/');
         $response->assertStatus(200);
 
         // DPL dilarang mengakses User Management (403 Forbidden)
-        $response = $this->actingAs($dpl)->get('/admin/users');
+        $response = $this->actingAs($dpl)->get('/users');
         $response->assertStatus(403);
 
         // DPL dilarang mengakses Mitra Management (403 Forbidden)
-        $response = $this->actingAs($dpl)->get('/admin/mitras');
+        $response = $this->actingAs($dpl)->get('/mitras');
         $response->assertStatus(403);
 
         // DPL tetap bisa mengakses Kelompok dan Mahasiswa miliknya
-        $response = $this->actingAs($dpl)->get('/admin/groups');
+        $response = $this->actingAs($dpl)->get('/groups');
         $response->assertStatus(200);
 
-        $response = $this->actingAs($dpl)->get('/admin/students');
+        $response = $this->actingAs($dpl)->get('/students');
         $response->assertStatus(200);
     }
 
@@ -77,13 +77,13 @@ class AuthAndAccessTest extends TestCase
         $admin = User::where('role', 'admin')->first();
 
         // Download Template Excel (.xlsx)
-        $templateResponse = $this->actingAs($admin)->get('/admin/template-students');
+        $templateResponse = $this->actingAs($admin)->get('/template-students');
         $templateResponse->assertStatus(200);
         $templateResponse->assertHeader('content-type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         $this->assertStringContainsString('template_import_mahasiswa_ppl.xlsx', (string) $templateResponse->headers->get('content-disposition'));
 
         // Export Nilai Excel (.xlsx)
-        $exportResponse = $this->actingAs($admin)->get('/admin/export-grades');
+        $exportResponse = $this->actingAs($admin)->get('/export-grades');
         $exportResponse->assertStatus(200);
         $exportResponse->assertHeader('content-type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         $this->assertStringContainsString('.xlsx', (string) $exportResponse->headers->get('content-disposition'));

@@ -29,7 +29,7 @@ class AdminPanelProvider extends PanelProvider
         return $panel
             ->default()
             ->id('admin')
-            ->path('admin')
+            ->path('')
             ->login(\App\Filament\Pages\Auth\Login::class)
             ->brandName('FEB UNIKU - Rekap Nilai PPL')
             ->font('Fira Sans', url: 'https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;600;700&display=swap')

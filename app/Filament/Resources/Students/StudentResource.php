@@ -24,9 +24,9 @@ class StudentResource extends Resource
 
     protected static ?string $navigationLabel = 'Input & Rekap Nilai';
 
-    protected static ?string $modelLabel = 'Mahasiswa & Nilai';
+    protected static ?string $modelLabel = 'Data Mahasiswa';
 
-    protected static ?string $pluralModelLabel = 'Daftar Mahasiswa & Nilai';
+    protected static ?string $pluralModelLabel = 'Data Mahasiswa';
 
     protected static string | \UnitEnum | null $navigationGroup = 'PPL FEB';
 

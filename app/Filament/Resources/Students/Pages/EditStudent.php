@@ -10,6 +10,13 @@ class EditStudent extends EditRecord
 {
     protected static string $resource = StudentResource::class;
 
+    protected static ?string $title = 'Edit Data Mahasiswa';
+
+    public function getHeading(): string
+    {
+        return 'Edit Data Mahasiswa';
+    }
+
     protected function getHeaderActions(): array
     {
         return [

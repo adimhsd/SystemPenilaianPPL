@@ -100,7 +100,7 @@ php artisan migrate:fresh --seed
 ```bash
 php artisan serve
 ```
-Akses aplikasi melalui peramban di: **`http://localhost:8000/admin`**
+Akses aplikasi melalui peramban di: **`http://localhost:8000/login`** (atau langsung di root **`http://localhost:8000`**)
 
 ---
 

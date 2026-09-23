@@ -23,6 +23,34 @@ class AuthAndAccessTest extends TestCase
         $response->assertSee('FEB UNIKU - Rekap Nilai PPL');
     }
 
+    public function test_dpl_can_login_with_username_and_with_email(): void
+    {
+        // 1. Login menggunakan Username
+        \Livewire\Livewire::test(\App\Filament\Pages\Auth\Login::class)
+            ->fillForm([
+                'login' => 'DPL_PPL01',
+                'password' => 'FEB_Tangguh',
+            ])
+            ->call('authenticate')
+            ->assertHasNoFormErrors()
+            ->assertRedirect('/');
+
+        $this->assertAuthenticated();
+        auth()->logout();
+
+        // 2. Login menggunakan Email
+        \Livewire\Livewire::test(\App\Filament\Pages\Auth\Login::class)
+            ->fillForm([
+                'login' => 'dpl_ppl01@uniku.ac.id',
+                'password' => 'FEB_Tangguh',
+            ])
+            ->call('authenticate')
+            ->assertHasNoFormErrors()
+            ->assertRedirect('/');
+
+        $this->assertAuthenticated();
+    }
+
     public function test_admin_can_access_all_resources(): void
     {
         $admin = User::where('role', 'admin')->first();

@@ -192,14 +192,14 @@ class PplGradingTest extends TestCase
         $this->assertEquals(41, User::where('role', 'dpl')->count());
 
         // 2. Mitra checks
-        $this->assertEquals(81, \App\Models\Mitra::count());
+        $this->assertEquals(82, \App\Models\Mitra::count());
 
         // 3. Group checks
-        $this->assertEquals(78, Group::count());
+        $this->assertEquals(79, Group::count());
 
         // 4. Student checks
-        $this->assertEquals(393, Student::count());
-        $this->assertEquals(326, Student::where('prodi', 'Manajemen')->count());
+        $this->assertEquals(394, Student::count());
+        $this->assertEquals(327, Student::where('prodi', 'Manajemen')->count());
         $this->assertEquals(57, Student::where('prodi', 'Akuntansi')->count());
         $this->assertEquals(10, Student::where('prodi', 'Bisnis Digital')->count());
 

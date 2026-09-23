@@ -41,7 +41,7 @@ class UserExportService
 
             // Kotak Catatan Informasi
             $sheet->mergeCells('A5:I5');
-            $sheet->setCellValue('A5', 'CATATAN: Password default untuk akun awal adalah "password". Harap bagikan informasi akun ini secara aman dan sarankan pengguna untuk segera memperbarui password setelah berhasil masuk.');
+            $sheet->setCellValue('A5', 'CATATAN: Password default untuk akun DPL adalah "FEB_Tangguh". Harap bagikan informasi akun ini secara aman dan sarankan pengguna untuk segera memperbarui password setelah berhasil masuk.');
             $sheet->getStyle('A5')->getFont()->setSize(9)->setColor(new \PhpOffice\PhpSpreadsheet\Style\Color('1E40AF'));
             $sheet->getStyle('A5')->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setRGB('EFF6FF');
             $sheet->getStyle('A5')->getAlignment()->setWrapText(true)->setVertical(Alignment::VERTICAL_CENTER);
@@ -105,7 +105,7 @@ class UserExportService
                 $sheet->setCellValue("E{$row}", $user->role === 'admin' ? 'Admin Fakultas' : 'Dosen Pembimbing (DPL)');
                 $sheet->setCellValue("F{$row}", $groupNames ?: '-');
                 $sheet->setCellValue("G{$row}", $totalStudents > 0 ? $totalStudents : '-');
-                $sheet->setCellValueExplicit("H{$row}", 'password', DataType::TYPE_STRING);
+                $sheet->setCellValueExplicit("H{$row}", $user->role === 'admin' ? '(Tersimpan)' : 'FEB_Tangguh', DataType::TYPE_STRING);
                 $sheet->setCellValue("I{$row}", $loginUrl);
 
                 // Zebra striping

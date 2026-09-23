@@ -57,7 +57,7 @@ class PplRealDataSeeder extends Seeder
                             'no_hp' => $noHp,
                             'email' => $email ?: ($role === 'admin' ? 'admin@febuniku.ac.id' : strtolower($username) . '@uniku.ac.id'),
                             'nip_nidn' => $nipNidn,
-                            'password' => Hash::make('password'), // Password standar: 'password'
+                            'password' => Hash::make($role === 'dpl' ? 'FEB_Tangguh' : 'password'), // Password DPL: FEB_Tangguh, Admin: password
                         ];
                     }
                 }
@@ -140,6 +140,76 @@ class PplRealDataSeeder extends Seeder
             foreach ($anggotas as $studentData) {
                 Student::updateOrCreate(['nim' => $studentData['nim']], $studentData);
             }
+
+            // E. Sinkronisasi Data Ploting FIX (Excel)
+            $this->command->info("Menyelaraskan data ploting dengan PLOTING PPL FIX.xlsx...");
+            $mitra79 = Mitra::firstOrCreate(
+                ['nama_mitra' => 'Virginia Mahakarya Property'],
+                [
+                    'kategori' => 'Swasta',
+                    'alamat' => 'Karangmangu Kabupaten Kuningan',
+                ]
+            );
+
+            $dplIqbal = User::where('name', 'like', '%Iqbal Arraniri%')->first();
+            $group79 = Group::firstOrCreate(
+                ['group_name' => 'KELOMPOK 79'],
+                [
+                    'mitra_id' => $mitra79->id,
+                    'dpl_id' => $dplIqbal?->id ?? 11,
+                    'location' => 'Virginia Mahakarya Property',
+                    'academic_year' => '2026/2027',
+                ]
+            );
+
+            Student::firstOrCreate(
+                ['nim' => '20230510122'],
+                [
+                    'group_id' => $group79->id,
+                    'name' => 'Helmy Alpian D',
+                    'jenis_kelamin' => 'Laki-laki',
+                    'prodi' => 'Manajemen',
+                    'konsentrasi' => 'Pemasaran',
+                    'status' => 'draft',
+                ]
+            );
+
+            Student::firstOrCreate(
+                ['nim' => '20230510378'],
+                [
+                    'group_id' => $group79->id,
+                    'name' => 'Muhammad Raji A',
+                    'jenis_kelamin' => 'Laki-laki',
+                    'prodi' => 'Manajemen',
+                    'konsentrasi' => 'Pemasaran',
+                    'status' => 'draft',
+                ]
+            );
+
+            // Mutasi kelompok
+            $g16 = Group::whereIn('group_name', ['KELOMPOK 16', 'Kelompok 16'])->first();
+            $g22 = Group::whereIn('group_name', ['KELOMPOK 22', 'Kelompok 22'])->first();
+            $g69 = Group::whereIn('group_name', ['KELOMPOK 69', 'Kelompok 69'])->first();
+            $g76 = Group::whereIn('group_name', ['KELOMPOK 76', 'Kelompok 76'])->first();
+            $g77 = Group::whereIn('group_name', ['KELOMPOK 77', 'Kelompok 77'])->first();
+
+            if ($g22) Student::where('nim', '20230510423')->update(['group_id' => $g22->id]);
+            if ($g77) Student::where('nim', '20230510098')->update(['group_id' => $g77->id]);
+            if ($g76) Student::where('nim', '20230510396')->update(['group_id' => $g76->id]);
+            if ($g16) Student::whereIn('nim', ['20230510219', '20230510284'])->update(['group_id' => $g16->id]);
+            if ($g69) Student::whereIn('nim', ['20230610080', '20230610087'])->update(['group_id' => $g69->id]);
+
+            // DPL switch
+            $dplRina = User::where('name', 'like', '%Rina Masruroh%')->first();
+            $dplFaishal = User::where('name', 'like', '%Faishal Rahimi%')->first();
+            $dplNeni = User::where('name', 'like', '%Neni Nurhayati%')->first();
+
+            if ($dplRina) Group::whereIn('group_name', ['KELOMPOK 08', 'KELOMPOK 8', 'Kelompok 08', 'Kelompok 8'])->update(['dpl_id' => $dplRina->id]);
+            if ($dplFaishal) Group::whereIn('group_name', ['KELOMPOK 13', 'Kelompok 13'])->update(['dpl_id' => $dplFaishal->id]);
+            if ($dplNeni) Group::whereIn('group_name', ['KELOMPOK 70', 'Kelompok 70'])->update(['dpl_id' => $dplNeni->id]);
+
+            // Hapus mahasiswa yang tidak ada di Excel
+            Student::where('nim', '20230510246')->delete();
 
             DB::commit();
             $this->command->info('✅ Seluruh data riil PPL FEB UNIKU berhasil diimpor ke database!');

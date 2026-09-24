@@ -187,21 +187,21 @@ class PplGradingTest extends TestCase
     public function test_real_ppl_dataset_integrity(): void
     {
         // 1. User checks
-        $this->assertEquals(42, User::count());
+        $this->assertEquals(44, User::count());
         $this->assertEquals(1, User::where('role', 'admin')->count());
-        $this->assertEquals(41, User::where('role', 'dpl')->count());
+        $this->assertEquals(43, User::where('role', 'dpl')->count());
 
         // 2. Mitra checks
-        $this->assertEquals(82, \App\Models\Mitra::count());
+        $this->assertEquals(83, \App\Models\Mitra::count());
 
         // 3. Group checks
-        $this->assertEquals(79, Group::count());
+        $this->assertEquals(92, Group::count());
 
         // 4. Student checks
-        $this->assertEquals(394, Student::count());
-        $this->assertEquals(327, Student::where('prodi', 'Manajemen')->count());
-        $this->assertEquals(57, Student::where('prodi', 'Akuntansi')->count());
-        $this->assertEquals(10, Student::where('prodi', 'Bisnis Digital')->count());
+        $this->assertEquals(470, Student::count());
+        $this->assertEquals(342, Student::where('prodi', 'Manajemen')->count());
+        $this->assertEquals(114, Student::where('prodi', 'Akuntansi')->count());
+        $this->assertEquals(14, Student::where('prodi', 'Bisnis Digital')->count());
 
         // 5. Relations check
         $groupsWithoutMitra = Group::whereNull('mitra_id')->count();

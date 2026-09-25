@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesan WhatsApp 2 DPL Baru (MBKM) - FEB UNIKU</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            min-height: 100vh;
+        }
+        .card-custom {
+            border: 1px solid rgba(226, 232, 240, 0.9);
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+            background: #ffffff;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.08);
+        }
+        .msg-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.75rem;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-size: 13.5px;
+            line-height: 1.6;
+            color: #1e293b;
+            white-space: pre-wrap;
+            padding: 1.25rem;
+        }
+        .btn-wa {
+            background-color: #25D366;
+            color: white;
+            font-weight: 600;
+        }
+        .btn-wa:hover {
+            background-color: #1eb956;
+            color: white;
+        }
+    </style>
+</head>
+<body class="py-5">
+<div class="container" style="max-width: 760px;">
+
+    <div class="text-center mb-5">
+        <span class="badge bg-primary px-3 py-2 rounded-pill mb-2">FEB UNIKU - Rekognisi MBKM</span>
+        <h3 class="fw-bold text-dark">Pesan WhatsApp untuk 2 DPL Baru</h3>
+        <p class="text-muted">Klik <strong>Salin Pesan</strong> untuk mencopy teks atau masukkan nomor WhatsApp Dosen lalu klik <strong>Buka di WhatsApp</strong>.</p>
+    </div>
+
+    <!-- DPL 1: Siti Nuke Nurfatimah, M.Sc -->
+    <div class="card card-custom p-4 mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <div>
+                <span class="badge bg-primary-subtle text-primary border border-primary-subtle mb-1">DPL Baru #1</span>
+                <h5 class="fw-bold mb-0 text-dark">Siti Nuke Nurfatimah, M.Sc</h5>
+            </div>
+            <span class="badge bg-info text-dark">14 Mahasiswa MBKM</span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label small text-muted fw-semibold">Format Pesan WhatsApp:</label>
+            <div id="msg1" class="msg-box">Selamat Pagi, Bapak/Ibu Siti Nuke Nurfatimah, M.Sc
+Berikut kami berikan informasi penginputan Nilai PPL, lakukan proses login dengan
+User Name : dpl_ppl42@uniku.ac.id
+Password : FEB_Tangguh
+di laman web : https://ppl.febuniku.dpdns.org/login
+Bapak/Ibu silahkan mengisi nilai mahasiswa untuk Kelompok Bimbingan : KELOMPOK MBKM - Siti Nuke Nurfatimah
+
+Pastikan melakukan Kunci Nilai setelah proses input nilai di lakukan agar nilai bisa tersimpan permanen di system,
+terimakasih</div>
+        </div>
+
+        <div class="row g-2 align-items-center">
+            <div class="col-md-5">
+                <input type="text" id="phone1" class="form-control form-control-sm" placeholder="No. WA Dosen (cth: 08123xxx)">
+            </div>
+            <div class="col-md-7 d-flex gap-2">
+                <button class="btn btn-sm btn-outline-primary w-50" onclick="copyMessage('msg1', this)">📋 Salin Pesan</button>
+                <button class="btn btn-sm btn-wa w-50" onclick="openWhatsApp('msg1', 'phone1')">💬 Kirim ke WA</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- DPL 2: Teti Rahmawati, M.Si., Ak., CA -->
+    <div class="card card-custom p-4 mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <div>
+                <span class="badge bg-success-subtle text-success border border-success-subtle mb-1">DPL Baru #2</span>
+                <h5 class="fw-bold mb-0 text-dark">Teti Rahmawati, M.Si., Ak., CA</h5>
+            </div>
+            <span class="badge bg-info text-dark">8 Mahasiswa MBKM</span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label small text-muted fw-semibold">Format Pesan WhatsApp:</label>
+            <div id="msg2" class="msg-box">Selamat Pagi, Bapak/Ibu Teti Rahmawati, M.Si., Ak., CA
+Berikut kami berikan informasi penginputan Nilai PPL, lakukan proses login dengan
+User Name : dpl_ppl43@uniku.ac.id
+Password : FEB_Tangguh
+di laman web : https://ppl.febuniku.dpdns.org/login
+Bapak/Ibu silahkan mengisi nilai mahasiswa untuk Kelompok Bimbingan : KELOMPOK MBKM - Teti Rahmawati
+
+Pastikan melakukan Kunci Nilai setelah proses input nilai di lakukan agar nilai bisa tersimpan permanen di system,
+terimakasih</div>
+        </div>
+
+        <div class="row g-2 align-items-center">
+            <div class="col-md-5">
+                <input type="text" id="phone2" class="form-control form-control-sm" placeholder="No. WA Dosen (cth: 08123xxx)">
+            </div>
+            <div class="col-md-7 d-flex gap-2">
+                <button class="btn btn-sm btn-outline-primary w-50" onclick="copyMessage('msg2', this)">📋 Salin Pesan</button>
+                <button class="btn btn-sm btn-wa w-50" onclick="openWhatsApp('msg2', 'phone2')">💬 Kirim ke WA</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center text-muted small mt-4">
+        Sistem Rekapitulasi & Penilaian PPL FEB UNIKU &copy; 2026
+    </div>
+
+</div>
+
+<script>
+function copyMessage(elemId, btn) {
+    const text = document.getElementById(elemId).innerText;
+    navigator.clipboard.writeText(text).then(() => {
+        const orig = btn.innerHTML;
+        btn.innerHTML = '✅ Berhasil Disalin!';
+        btn.classList.remove('btn-outline-primary');
+        btn.classList.add('btn-primary');
+        setTimeout(() => {
+            btn.innerHTML = orig;
+            btn.classList.remove('btn-primary');
+            btn.classList.add('btn-outline-primary');
+        }, 2000);
+    });
+}
+
+function openWhatsApp(msgId, phoneId) {
+    const text = document.getElementById(msgId).innerText;
+    let phone = document.getElementById(phoneId).value.replace(/[^0-9]/g, '');
+    if (phone.startsWith('0')) {
+        phone = '62' + phone.substring(1);
+    }
+    
+    let url = 'https://wa.me/';
+    if (phone) {
+        url += phone + '?text=' + encodeURIComponent(text);
+    } else {
+        url += '?text=' + encodeURIComponent(text);
+    }
+    window.open(url, '_blank');
+}
+</script>
+</body>
+</html>

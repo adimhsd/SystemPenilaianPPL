@@ -247,7 +247,7 @@ return new class extends Migration
     'name' => 'Selvi Aulia',
     'jenis_kelamin' => 'Perempuan',
     'prodi' => 'Akuntansi',
-    'group_name' => 'KELOMPOK MBKM - Amir Hamzah',
+    'group_name' => 'KELOMPOK MBKM - Teti Rahmawati',
   ),
   20 => 
   array (
@@ -519,7 +519,7 @@ return new class extends Migration
     'name' => 'Indah Meilani',
     'jenis_kelamin' => 'Perempuan',
     'prodi' => 'Akuntansi',
-    'group_name' => 'KELOMPOK MBKM - Teti Rahmawati',
+    'group_name' => 'KELOMPOK MBKM - Amir Hamzah',
   ),
   54 => 
   array (
